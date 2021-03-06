@@ -22,8 +22,6 @@ def func(stream, file_handle):
         video_with_new_audio = video.set_audio(audio)
         video_with_new_audio.write_videofile(file_handle.replace('audio\\', 'final\\'))
         print('Done merge file!')
-        r = Timer(20, removeFile, (file_handle.replace('audio\\', '')))
-        r.start()
     else:
         os.remove(file_handle)
 if __name__=="__main__":
