@@ -5,8 +5,12 @@ import sys
 import argparse
 import os
 from os import path
+from threading import Timer
 
 # @cuda.jit
+def removeFile(file):
+    os.remove(file)
+
 def func(stream, file_handle):
     video_just_audio = AudioFileClip(file_handle)
     audio = video_just_audio
@@ -17,7 +21,9 @@ def func(stream, file_handle):
         video = VideoFileClip(file_handle.replace('audio\\', ''))
         video_with_new_audio = video.set_audio(audio)
         video_with_new_audio.write_videofile(file_handle.replace('audio\\', 'final\\'))
-        os.remove(file_handle.replace('audio\\', ''))
+        print('Done merge file!')
+        r = Timer(20, removeFile, (file_handle.replace('audio\\', '')))
+        r.start()
     else:
         os.remove(file_handle)
 if __name__=="__main__":
