@@ -27,7 +27,7 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--link', '-l', type=str, help='link of video')
     parser.add_argument('--type', '-t', help='Type of media: video or audio')
-    parser.add_argument('--quantity', '-q', help='Quantity of media. 128kbps, 320kbps with audio and 360p, 720p with video')
+    parser.add_argument('--quanlity', '-q', help='Quanlity of media. 128kbps, 320kbps with audio and 360p, 720p with video')
     args = parser.parse_args()
 
     if not path.exists('audio'):
@@ -50,9 +50,9 @@ if __name__=="__main__":
         yt.register_on_complete_callback(func)
         audioStream.download('audio')
     else:
-        if args.quantity is None:
-            args.quantity = '360p'
-        videoStream = yt.streams.filter(file_extension='mp4', resolution=args.quantity)
+        if args.quanlity is None:
+            args.quanlity = '360p'
+        videoStream = yt.streams.filter(file_extension='mp4', resolution=args.quanlity)
         if len(videoStream) > 0:
             videoStream = videoStream.first()
             print(videoStream)
