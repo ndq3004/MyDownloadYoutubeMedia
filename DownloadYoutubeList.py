@@ -5,7 +5,6 @@ import sys
 import argparse
 import os
 from os import path
-from threading import Timer
 
 # @cuda.jit
 def removeFile(file):
